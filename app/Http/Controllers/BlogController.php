@@ -17,4 +17,17 @@ class BlogController extends Controller
             'blogs' => $blogs
         ]);
     }
+
+    public function blogSingle(Request $request, $slug){
+        $categories = Category::get(['id', 'categoryName']);
+        $blog = Blog::where('slug', $slug)->with(['cat', 'tag', 'user'])->first(['id', 'title', 'user_id', 'featuredImage', 'post']);
+        //return $blog;
+        return view('blogsingle')->with([
+            'blog' => $blog,
+            'categories' => $categories,
+            
+            ]);
+
+    }
+    
 }
