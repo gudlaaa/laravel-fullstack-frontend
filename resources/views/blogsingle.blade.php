@@ -235,103 +235,26 @@
 					</div>
 					<div class="col-12 col-md-12 col-lg-3">
 						<div class="blog_post_r8">
-								<h4 class="trnd_artcl_h4">TRENDING ARTICLES</h4>
+								<h4 class="trnd_artcl_h4">RELATED ARTICLES</h4>
 							<div class="blog_post_r8_all">
-								<!-- iteam -->
-								<div class="blog_post_r8_item">
-									<div class="blog_post_item_lft">
-										<img src="img/man3.jpg" alt="image">
-									</div>
-									<div class="blog_post_item_r8">
-										<a href="">
-											<h4 class="blog_post_item_r8_h4">
-												The Upwork 100: 3 Things You May Have Missed
-											</h4>
-										</a>
-										<a href=""><p class="author_name2">-Amy Sept</p></a>
-									</div>
-								</div>
-								<!-- iteam -->
-
-									<!-- iteam -->
-								<div class="blog_post_r8_item">
-									<div class="blog_post_item_lft">
-										<img src="img/man2.jpg" alt="image">
-									</div>
-									<div class="blog_post_item_r8">
-										<a href="">
-											<h4 class="blog_post_item_r8_h4">
-												The Upwork 100: 3 Things You May Have Missed
-											</h4>
-										</a>
-										<a href=""><p class="author_name2">-Amy Sept</p></a>
-									</div>
-								</div>
-								<!-- iteam -->
-
-									<!-- iteam -->
-								<div class="blog_post_r8_item">
-									<div class="blog_post_item_lft">
-										<img src="img/man3.jpg" alt="image">
-									</div>
-									<div class="blog_post_item_r8">
-										<a href="">
-											<h4 class="blog_post_item_r8_h4">
-												The Upwork 100: 3 Things You May Have Missed
-											</h4>
-										</a>
-										<a href=""><p class="author_name2">-Amy Sept</p></a>
-									</div>
-								</div>
-								<!-- iteam -->
-
-									<!-- iteam -->
-								<div class="blog_post_r8_item">
-									<div class="blog_post_item_lft">
-										<img src="img/man4.jpg" alt="image">
-									</div>
-									<div class="blog_post_item_r8">
-										<a href="">
-											<h4 class="blog_post_item_r8_h4">
-												The Upwork 100: 3 Things You May Have Missed
-											</h4>
-										</a>
-										<a href=""><p class="author_name2">-Amy Sept</p></a>
-									</div>
-								</div>
-								<!-- iteam -->
-
-									<!-- iteam -->
-								<div class="blog_post_r8_item">
-									<div class="blog_post_item_lft">
-										<img src="img/man3.jpg" alt="image">
-									</div>
-									<div class="blog_post_item_r8">
-										<a href="">
-											<h4 class="blog_post_item_r8_h4">
-												The Upwork 100: 3 Things You May Have Missed
-											</h4>
-										</a>
-										<a href=""><p class="author_name2">-Amy Sept</p></a>
-									</div>
-								</div>
-								<!-- iteam -->
-
-									<!-- iteam -->
-								<div class="blog_post_r8_item">
-									<div class="blog_post_item_lft">
-										<img src="img/man4.jpg" alt="image">
-									</div>
-									<div class="blog_post_item_r8">
-										<a href="">
-											<h4 class="blog_post_item_r8_h4">
-												The Upwork 100: 3 Things You May Have Missed
-											</h4>
-										</a>
-										<a href=""><p class="author_name2">-Amy Sept</p></a>
-									</div>
-								</div>
-								<!-- iteam -->
+                                <!-- iteam -->
+                                @if(count($relatedBlogs) > 0)
+                                    @foreach($relatedBlogs as $rb)
+                                        <div class="blog_post_r8_item">
+                                            <div class="blog_post_item_lft">
+                                                <img src="/img/banner.jpg" alt="image">
+                                            </div>
+                                            <div class="blog_post_item_r8">
+                                                <a href="/blog/{{$rb->slug}}">
+                                                    <h4 class="blog_post_item_r8_h4">
+                                                        {{$rb->title}}
+                                                    </h4>
+                                                </a>
+                                                <a href=""><p class="author_name2">-{{$rb->user->fullName}}</p></a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif   
 							</div>
 							<div class="course_price mar_t60">
 								<div class="course_price_top">

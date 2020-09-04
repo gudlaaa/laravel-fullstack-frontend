@@ -21,9 +21,20 @@ class BlogController extends Controller
 
     public function blogSingle(Request $request, $slug){
         $blog = Blog::where('slug', $slug)->with(['cat', 'tag', 'user'])->first(['id', 'title', 'user_id', 'featuredImage', 'post']);
+        $category_ids = [];
+
+        foreach( $blog->cat as $cat){
+            array_push($category_ids, $cat->id);
+        }
+
+        $relatedBlogs = Blog::with('user')->where('id', '!=', $blog->id)->whereHas('cat', function($q) use( $category_ids ){
+            $q->whereIn('category_id', $category_ids );
+        })->orderBy('id', 'desc')->limit(5)->get(['id', 'title', 'slug', 'user_id', 'featuredImage']);
         //return $blog;
+        
         return view('blogsingle')->with([
             'blog' => $blog,
+            'relatedBlogs' => $relatedBlogs
             ]);
 
     }
