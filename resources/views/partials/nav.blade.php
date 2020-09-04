@@ -21,8 +21,8 @@
 												<a href="/">HOME</a>
                                             </li>
                                             
-                                            @if(count($categories) > 0)
-                                                @foreach($categories as $nav)
+                                            @if(count($cat) > 0)
+                                                @foreach($cat as $nav)
                                                     <li>
 												        <a href="about_us.html">{{$nav->categoryName}}</a>
 											        </li>

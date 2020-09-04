@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Blog;
 use App\User;
+use App\Category;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -19,15 +20,18 @@ class BlogController extends Controller
     }
 
     public function blogSingle(Request $request, $slug){
-        $categories = Category::get(['id', 'categoryName']);
         $blog = Blog::where('slug', $slug)->with(['cat', 'tag', 'user'])->first(['id', 'title', 'user_id', 'featuredImage', 'post']);
         //return $blog;
         return view('blogsingle')->with([
             'blog' => $blog,
-            'categories' => $categories,
-            
             ]);
 
+    }
+
+    public function compose(View $view)
+    {
+        $cat = Category::get(['id', 'categoryName']);
+        $view->with('cat', $cat);
     }
     
 }
