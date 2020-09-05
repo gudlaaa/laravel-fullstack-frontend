@@ -72,4 +72,41 @@ class BlogController extends Controller
         ]);
     }
     
+    public function search(Request $request){
+        $str = $request->str;
+        $blogs = Blog::orderBy('id','desc')->with(['cat','user','tag'])->select(['id', 'title', 'post_excerpt', 'slug', 'user_id', 'featuredImage']);
+
+        //using when
+        $blogs->when($str!='', function($q) use($str) {
+            $q->where('title', 'LIKE', "%{$str}%")
+               ->orwhereHas('cat', function($q) use($str){
+                $q->where('categoryName', $str);
+            })
+               ->orwhereHas('tag', function($q) use($str){
+            $q->where('tagName', $str);
+            });
+        });
+
+        $blogs = $blogs->paginate(1);
+        $blogs = $blogs->appends($request->all());
+        return view('blogs')->with([
+            'blogs' => $blogs
+        ]);
+
+        //using Normal if
+        /*if($str) return $blogs->get();
+        
+        $blogs->where('title', 'LIKE', "%{$str}%")
+                ->orwhereHas('cat', function($q) use($str){
+                    $q->where('categoryName', $str);
+                })
+                ->orwhereHas('tag', function($q) use($str){
+                $q->where('tagName', $str);
+                });
+        */
+        return $blogs->get();
+        // return view('blogs')->with([
+        //     'blogs' => $blogs
+        // ]);
+    }
 }
