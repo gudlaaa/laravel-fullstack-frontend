@@ -18,7 +18,7 @@
                                          @if(count($blog->cat) > 0)
                                             @foreach($blog->cat as $c)
                                                 <li>
-                                                    <a href="blog_post.html">{{$c->categoryName}}</a>
+                                                    <a href="/category/{{$c->categoryName}}/{{$c->id}}">{{$c->categoryName}}</a>
                                                     <!-- <span><i class="fas fa-angle-right"></i></span> -->
                                                 </li>
                                             @endforeach
@@ -311,7 +311,7 @@
                                     @if(count($blog->tag) > 0)
                                         @foreach($blog->tag as $t)
                                             <li>
-                                                <a href="">{{$t->tagName}}</a>
+                                                <a href="/tags/{{$t->tagName}}/{{$t->id}}">{{$t->tagName}}</a>
                                             </li>   
                                         @endforeach
                                     @endif

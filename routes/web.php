@@ -18,4 +18,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','BlogController@index');
-Route::get('blog/{slug}','BlogController@blogSingle');
+Route::get('/blog/{slug}','BlogController@blogSingle');
+Route::get('/category/{categoryName}/{id}','BlogController@categoryIndex');
+Route::get('/tag/{tagName}/{id}','BlogController@categoryIndex');
+Route::get('blogs', 'BlogController@allBlogs');

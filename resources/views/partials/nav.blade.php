@@ -24,7 +24,7 @@
                                             @if(count($cat) > 0)
                                                 @foreach($cat as $nav)
                                                     <li>
-												        <a href="about_us.html">{{$nav->categoryName}}</a>
+												        <a href="/category/{{$nav->categoryName}}/{{$nav->id}}">{{$nav->categoryName}}</a>
 											        </li>
                                                 @endforeach
                                             @endif
